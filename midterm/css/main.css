@@ -1,0 +1,259 @@
+/* ===== 聽說挺不錯的預防版面亂掉的設定 ===== */
+*{ box-sizing: border-box; }
+body{
+  margin:0; color:#fff;
+  font-family:"微軟正黑體", system-ui, Arial;
+  /* padding: 0 20px 40px; */
+  padding-top: 100px;
+  background:#1c1816 url("../images/底圖.png") center / cover no-repeat;
+  overflow-x: hidden;
+}
+
+/* 心智圖範圍 */
+#wrap{ width:900px; max-width:100%; margin:0 auto; }
+#title{
+  font-size:28px; font-weight:700;
+  padding-left: 800px;
+  margin-top:50px;
+  color:#000000; 
+}
+
+#mindmap{
+  position:relative;
+  width:900px; height:650px;
+  margin:-10px auto 40px;
+  /* margin-left:140px;                  整體往右 */
+  background:#201a1800;             
+  border:1px solid #00000022;
+  border-radius:8px;
+  overflow:visible;                   
+}
+
+/* ===== 節點 ===== */
+.node{
+  width:88px; height:88px; border-radius:50%;
+  /* background:#d4b484;  */
+  background: transparent;             /* 透明 */
+  position:absolute; display:flex; align-items:center; justify-content:center;
+  font-weight:700; letter-spacing:.1em; cursor:pointer; transition:.25s;
+  border:2px solid #d4b484;         
+  box-shadow:0 4px 10px #0007;
+  overflow:hidden;
+}
+.node.small{ width:72px; height:72px; font-size:15px; }
+.node.tiny { width:60px; height:60px; font-size:14px; }
+
+.pic{
+  position:absolute;    
+  inset:0;              /* 全部 0 */
+  width:100%;
+  height:100%;
+  object-fit:cover;     /* 等比鋪滿 */
+  display:block;
+}
+.node span{
+  position:absolute;
+  color:#fff;
+  text-shadow:0 1px 2px #000;
+  z-index:1;            /* 讓字在圖片上方 */
+}
+
+/* Hover */
+.node:hover{
+  transform:scale(1.05);
+  box-shadow:
+    0 0 0 6px #f5d8ae,     /* 圈 */
+    0 8px 16px #0009;   /* 影 */
+}
+
+/* ===== hover 的 hover ===== */
+.branch{ position:absolute; display:none; }
+.group:hover .branch{ display:block; }
+
+
+/* ===== 六角形 ===== */
+.center .node  { left:406px; top:281px; background:#b22222; }
+
+.moon   .node  { left:406px; top:100px; }   /* 月 */
+.rock   .node  { left:406px; top:462px; }   /* 岩 */
+
+.water  .node  { left:207px; top:170px; }   /* 水 */
+.wind   .node  { left:207px; top:392px; }   /* 風 */
+
+.flame  .node  { left:605px; top:170px; }   /* 炎 */
+.thunder .node { left:605px; top:392px; }   /* 雷 */
+
+/* ===== 分支 ===== */
+/* 水 */
+.water .branch{ left:0; top:0; }
+.water .flower .node  { left:100px; top:130px; }   /* 花 */
+.water .serpent .node { left:100px; top: 230px; }   /* 蛇 */
+.water .insect .node  { left:20px; top: 135px; }  /* 蟲*/
+
+/* 風 */
+.wind .branch{ left:0; top:0; }
+.wind .mist .node   { left:100px; top:370px; }     /* 霞 */
+.wind .beast .node  { left:100px; top:460px; }     /* 獸 */
+
+/* 炎 */
+.flame .branch{ left:0; top:0; }
+.flame .love .node { left:700px; top:100px; }       /* 戀 */
+
+/* 雷 */
+.thunder .branch{ left:0; top:0; }
+.thunder .sound .node { left:700px; top:480px; }     /* 音 */
+
+/* ---------- 分類 ---------- */
+.ui-badge{
+  position:absolute;
+  top:-24px;            
+  left:800px;
+  width:220px; height:56px;
+  background: url("../images/分類選項底圖.png") center/contain no-repeat;
+  display:flex; align-items:center; justify-content:center;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.35));
+}
+.ui-badge span{
+  font-weight:800; letter-spacing:.2em;
+  color:#2b1a0e; 
+}
+
+#Classification {
+  position: absolute;
+  top: -50px;
+  right: -150px;
+  width: 220px;
+  height: 45px;
+  z-index: 10;
+}
+
+.Cback {
+  position: absolute;
+  inset: 0;
+  background-color: #d4b484; 
+  z-index: 1;
+  cursor: pointer;
+}
+
+#CText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #0e0202;
+  font-weight: bold;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.Cmenu {
+  position: absolute;
+  top: calc(100% + 20px); 
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 220px;
+  height: 400px;
+  background: url("../images/分類選項底圖.png") no-repeat center;
+  background-size: cover;
+  border: none;
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+  margin: 0;
+  padding: 5px 0;
+  text-align: center;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .18s ease, visibility 0s .18s;
+  z-index: 20;
+}
+
+.Cmenu::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #d4b484 transparent; 
+  z-index: 19;
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+#Classification:hover .Cmenu::before {
+  opacity: 1;
+}
+
+.Cmenu a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.Cmenu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background-color: #77613e;
+
+}
+
+.Cmenu a:hover {
+  background: rgba(116, 87, 29, 0.178);
+}
+
+#Classification:hover .Cmenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 0s;
+}
+
+/* ---------- 呼吸法標題 ---------- */
+.side-title{
+  position:absolute;
+  left:-250px;          
+  top:190px;
+  width:220px; height:220px;
+}
+.side-title .ring{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:contain;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,.35));
+}
+.side-title .text{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:48px; line-height:1.05;
+  color:#fff;
+  text-shadow: 0 2px 3px rgba(0,0,0,.6);
+}
+
+/* ---------- 說明文字 ---------- */
+.desc{
+  position:absolute;
+  left:850px; top:150px;
+  width:360px;
+  font-weight:800;
+  font-size:20px;
+  line-height:2.0;
+  letter-spacing:.15em;
+  color:#fff;
+  text-shadow:0 2px 3px rgba(0,0,0,.45);
+  pointer-events:none; 
+}
