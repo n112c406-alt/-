@@ -1,0 +1,256 @@
+body{
+
+    background-image: url('../image/首頁底圖.png'); /*這裡調整底圖樣式*/
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+
+    /* 固定背景，不隨滾動而移動 */
+    background-attachment: fixed;
+
+    /* 置中對齊 */
+    background-position: center;
+
+    /* 不重複鋪排 */
+    background-repeat: no-repeat;
+
+}
+
+.top_area{
+
+    height: 23vh;
+    width: 100%;
+
+}
+
+#top_area_img{
+
+    height: 100%;
+    width: 100%;
+
+}
+
+#logo_icon{
+
+    position: absolute;
+    left: 2%;
+    height: 20%;
+
+}
+
+#Classification{
+
+    position: absolute;
+    right: 10%;
+    height: 5%;
+    top: 7%;
+    
+
+}
+
+.line {
+    width: 100%;          
+    height: 2px;         
+    background-color: rgb(255, 215, 150);
+    position: absolute;
+    top: 20%;
+    
+}
+
+.content{
+  width: min(1200px, 92vw);
+  margin: 24px auto 80px;
+  display: grid;
+  grid-template-columns: 110px 1fr 1.1fr; 
+  gap: 28px;
+  align-items: start;
+}
+
+
+.side-nav{
+  position: absolute;
+  padding-top: 8px;
+  left: 5%;
+}
+
+.para-btn{
+  display: block;
+  width: 40px;        
+  height: 200px;       
+  margin: 10px auto;
+  background: #d9c1a1;  
+  transform: skewY(12deg);     
+  clip-path: polygon(0 0, 100% 12%, 100% 100%, 0% 88%);
+  position: relative;
+  text-decoration: none;
+  transition: transform .15s ease, filter .15s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+.para-btn span{
+    
+  height: 100%;
+  transform: skewY(-12deg);      
+  writing-mode: vertical-rl;    
+  text-orientation: mixed;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #2a1d17;
+  font-size: 28px;
+  display: flex;
+  align-items: center;      /* 垂直置中 */
+  justify-content: center;
+  
+
+}
+
+/* 斜線分隔（裝飾） */
+.para-btn::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom left, transparent 48%, #3a2b24 50%, transparent 52%) no-repeat;
+  background-size: 100% 100%;
+  opacity: .25;
+  pointer-events: none;
+}
+
+
+.para-btn:hover{ filter: brightness(1.06); transform: skewY(12deg) translateY(-2px); }
+.para-btn:active{ transform: skewY(12deg) translateY(0); }
+
+
+.hero{
+  position: absolute;
+  height: 480px;
+  top:35%;
+  left: 15%;
+  
+}
+.hero-img{
+  
+  height: 130%;
+}
+
+.right_text_area{
+
+    position: absolute;
+    right: 10%;
+    height: 65vh;
+    width: 40%;
+    top: 30%;
+
+}
+
+.char-name{
+  
+    font-size: clamp(28px, 3.2vw, 40px);
+    color: #fff;
+    text-shadow: 0 2px 0 #2a1d17, 0 10px 24px rgba(0,0,0,.45);
+    letter-spacing: 4px;
+    position: absolute;
+    right: 36%;
+
+}
+
+.char-desc{
+  margin: 0;
+  text-indent: 2em;
+  position: absolute;
+  bottom: 20%;
+
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 90%; 
+
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.feature-list{
+  list-style: "•  ";
+  margin: 20px 0 16px 40px;
+  padding: 0 0 0 10px;
+  color: #e6d5c4;
+  opacity: .9;
+}
+
+#p_set{
+
+    position: relative;
+    left: -5%;
+
+}
+
+.menu-bar {
+  display: flex;                /* 水平排列 */
+  justify-content: center;      /* 置中對齊 */
+  align-items: center;
+  gap: 2px;                    /* 間距 */
+  width: 800px;
+}
+
+.menu-btn {
+  display: block;
+  width: 200px;             
+  
+}
+
+.menu-btn img {
+  width: 150%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+/* 滑鼠效果：放大＋亮一點 */
+.menu-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+
+
+/* 右側：文字內容 */
+/*.profile{
+  color: #f4e9df;
+  line-height: 1.85;
+  font-size: 16px;
+  position: absolute;
+  right: 5%;
+}
+
+
+.feature-list li{ margin: 6px 0; }
+
+
+
+
+
+/* —— 版面微響應 —— */
+/*@media (max-width: 1000px){
+  .content{
+    grid-template-columns: 86px 1fr;
+    grid-template-areas:
+      "side hero"
+      "side profile";
+  }
+  .side-nav{ grid-area: side; }
+  .hero{ grid-area: hero; min-height: 380px; }
+  .profile{ grid-area: profile; }
+}
+
+@media (max-width: 720px){
+  .content{
+    display: block;
+    width: min(680px, 94vw);
+  }
+  .side-nav{
+    display: flex; gap: 14px; justify-content: center; margin-bottom: 16px;
+  }
+  .para-btn{ width: 72px; height: 100px; }
+  .hero{ min-height: 320px; }
+  .hero-img{ transform: none; margin-inline: auto; }
+}*/
