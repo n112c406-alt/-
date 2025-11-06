@@ -1,0 +1,456 @@
+/* ========== 全域 ========== */
+body {
+    margin: 0;
+    background:
+        linear-gradient(rgba(14, 2, 2, 0.99), rgba(14, 2, 2, 0.99)),
+        /* 控制透明度 */
+        url("../images/bg3.png") center top no-repeat,
+        #0e0202;
+    background-size: 500px auto, auto;
+    background-blend-mode: normal;
+    min-height: 100vh;
+    font-family: "Noto Serif JP", "微軟正黑體", sans-serif;
+}
+
+/* ========== 固定背景 ========== */
+.bg-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: url(../images/666.png) center top no-repeat,
+              linear-gradient(#0e0202, #0e0202);
+  background-size: cover;
+  z-index: 1000;  
+}
+/* 內容不要被蓋住 */
+main {
+    margin-top: 260px;
+}
+
+/* ========== 分類按鈕固定 ========== */
+#Classification {
+    position: fixed;
+    top: 45px;
+    right: 120px;
+    width: 220px;
+    height: 45px;
+    z-index: 1000;
+}
+
+.Cback {
+    position: absolute;
+    inset: 0;
+    background-color: #d4b484;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#CText {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #0e0202;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#Classification .Cmenu {
+    position: fixed;
+    top: 110px;
+    right: 120px;
+    width: 220px;
+    max-height: 400px;
+    background: url("../images/分類選項底圖.png") no-repeat center;
+    background-size: cover;
+    border: none;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .35);
+    margin: 0;
+    padding: 5px 0;
+    list-style: none;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .18s ease, transform .18s ease, visibility 0s .18s;
+    z-index: 1001;
+}
+
+#Classification .Cmenu::before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #d4b484 transparent;
+    opacity: 0;
+    transition: opacity .18s ease;
+}
+
+#Classification:hover .Cmenu,
+#Classification .Cmenu:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
+#Classification:hover .Cmenu::before,
+#Classification .Cmenu:hover::before {
+    opacity: 1;
+}
+
+
+.Cmenu li {
+    list-style: none;
+}
+
+.Cmenu a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.Cmenu a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background-color: #77613e;
+}
+
+.Cmenu a:hover {
+    background: rgba(116, 87, 29, 0.178);
+}
+
+.page {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.carousel .carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+.divider {
+    border: none;
+    height: 5px;
+    background-color: #d4b484;
+    width: 100%;
+    margin: 20px auto 0 auto;
+    /* 上20px、左右置中、下0 */
+    display: block;
+    /* 確保是區塊 */
+}
+
+
+
+.side-image img {
+    width: 400px;
+    /* 你可以改成 200~400 看比例 */
+    height: auto;
+    object-fit: contain;
+}
+
+.video-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 2px;
+  overflow: visible; 
+}
+
+
+.video-box iframe {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 980px;
+  height: 540px;
+  border: 3px solid #d4b484;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.vertical-text {
+  position: absolute;
+  top: 50%;
+  right: -90px;              
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 36px;          
+  line-height: 1.1;
+  color: #0e0202;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px 6px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  font-weight: 900;
+  letter-spacing: 0.5em;
+  z-index: 5;               
+}
+
+
+  /* 輪播圖滿版設定 */
+#carouselExampleIndicators {
+  position: relative;
+  width: 100vw;      
+  height: 70vh;
+   object-fit: cover;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw; 
+  margin-right: -50vw;
+  overflow: hidden;
+  z-index: 0;        
+}
+
+#carouselExampleIndicators .carousel-inner img {
+  width: 100vw;      
+  height: 100vh;     
+  object-fit: cover; 
+}
+
+/* IG + Spotify */
+.info-row {
+  width: 100%;
+  max-width: 980px;     
+  margin: 16px auto 0;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* IG 外框 */
+.instagram-box {
+  flex: 1 1 0;
+  background: #0e0202;
+  border: 2px solid #d4b484;
+  border-radius: 12px;
+  height: 520px;        
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+/* IG 圖示放大 */
+.instagram-inner {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.8);      
+  transform-origin: top center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/*IG視窗大小調整 */
+.instagram-box blockquote.instagram-media {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* Spotify 固定在右側就好 */
+.spotify-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* IG Spotify 中間裝飾線 */
+.info-row .divider-vertical {
+  width: 3px;                
+  background-color: #d4b484;  
+  align-self: stretch;        
+  min-height: 520px;          
+  border-radius: 2px;
+}
+
+
+
+
+
+
+
+/* 黃色分隔線 */
+.section-line.second {
+  height: 2px;
+  background: #d4b484;             /* 你的主色 */
+  margin: 50px auto 0;             /* 跟上面拉開一點、置中 */
+  width: min(760px, 100% - 80px);  /* 稍微短一點，看起來比較像裝飾 */
+}
+
+/* ====== 作品情報文字 ====== */
+.simple-list {
+  max-width: 980px;
+  margin: 48px auto 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* 作品情報文字 */
+.simple-list-title {
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.simple-list-title::before {
+  content: "◆";
+  color: #d4b484;      
+  font-size: 12px;
+}
+
+/* 年份 */
+.simple-list-row {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;     
+  border-top: 1px solid rgba(255,255,255,.2);  /* 作品情報下面那條線 */
+  padding-top: 20px;
+}
+
+.simple-col {
+  flex: 1 1 180px;      /* 每欄最小180px，夠寬就平均分 */
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  padding-bottom: 16px;
+}
+
+/* 年份 */
+.simple-year {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 14px;
+}
+
+/* 年份前面的小箭頭 */
+.simple-year::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: #d4b484;
+  font-weight: 400;
+}
+
+/* 作品情報至中 */
+.simple-list-foot {
+  max-width: 980px;
+  margin: 18px auto 0;
+  padding: 14px 16px 16px;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  background: rgba(14, 2, 2, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  border-top: none; 
+  z-index: 9999;
+}
+
+/* 右邊圖片+模糊效果 */
+.bg-overlay-image {
+  position: absolute;     
+  top: 1200px;
+  right: 10px;
+  width: 600px;
+  height: 1000px;
+  background: url("../images/c3.png") no-repeat right bottom;
+  background-size: cover;
+  filter: brightness(0.9);
+  opacity: 0.75;
+  z-index: 1;
+  pointer-events: none;
+
+  /* 模糊效果 */
+  -webkit-mask-image: radial-gradient(circle at center,
+      rgba(0, 0, 0, 1) 55%,
+      rgba(0, 0, 0, .6) 70%,
+      rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(circle at center,
+      rgba(0, 0, 0, 1) 55%,
+      rgba(0, 0, 0, .6) 70%,
+      rgba(0, 0, 0, 0) 100%);
+
+  /* 模糊效果 */
+  box-shadow: 0 0 120px 40px rgba(14, 2, 2, .85);
+}
+
+/* 圖片位置*/
+.bg-overlay-image1 {
+  position: absolute;    
+  top: 1650px;
+  left: 10px;
+  width: 425px;
+  height: 1200px;
+  background-size: cover;
+  filter: brightness(0.9);
+  opacity: 0.75;
+  z-index: 1;
+  pointer-events: none;
+
+  /* 模糊 */
+  -webkit-mask-image: radial-gradient(circle at center,
+      rgba(0, 0, 0, 1) 55%,
+      rgba(0, 0, 0, .6) 70%,
+      rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(circle at center,
+      rgba(0, 0, 0, 1) 55%,
+      rgba(0, 0, 0, .6) 70%,
+      rgba(0, 0, 0, 0) 100%);
+
+  /* 模糊 */
+  box-shadow: 0 0 120px 40px rgba(14, 2, 2, .85);
+}
+
+
+
+.page,
+.info-row,
+.video-box,
+.simple-list,
+.music-player {
+  position: relative;
+  z-index: 200;  
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+main {
+  padding-bottom: 30px; 
+}
+
+.simple-list,
+.simple-list-foot {
+  margin-bottom: 0 !important;
+}
